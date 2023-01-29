@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17180AAE-474C-4BFD-8325-9487D19A59C0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BankaYonetimSistemi</RootNamespace>
+    <AssemblyName>BankaYonetimSistemi</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnaGirisFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnaGirisFrm.Designer.cs">
+      <DependentUpon>AnaGirisFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ayarlar.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BysModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BysModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BysModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BysModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BysModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Degerler.cs" />
+    <Compile Include="HavaleFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HavaleFrm.Designer.cs">
+      <DependentUpon>HavaleFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HesapAcFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HesapAcFrm.Designer.cs">
+      <DependentUpon>HesapAcFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hesapharaketleri.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HesapHareketleriFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HesapHareketleriFrm.Designer.cs">
+      <DependentUpon>HesapHareketleriFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="hesaplar.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HesapOnaylariFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HesapOnaylariFrm.Designer.cs">
+      <DependentUpon>HesapOnaylariFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="islemturu.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kasaharaketleri.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KrediBasvurusuFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KrediBasvurusuFrm.Designer.cs">
+      <DependentUpon>KrediBasvurusuFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="krediler.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KrediOdeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KrediOdeFrm.Designer.cs">
+      <DependentUpon>KrediOdeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KrediOnayFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KrediOnayFrm.Designer.cs">
+      <DependentUpon>KrediOnayFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kullanicilar.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kullanicituru.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MudurPaneliFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MudurPaneliFrm.Designer.cs">
+      <DependentUpon>MudurPaneliFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusteriBilgiGuncellemeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusteriBilgiGuncellemeFrm.Designer.cs">
+      <DependentUpon>MusteriBilgiGuncellemeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusteriHesapHaraketleriFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusteriHesapHaraketleriFrm.Designer.cs">
+      <DependentUpon>MusteriHesapHaraketleriFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusterilerFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusterilerFrm.Designer.cs">
+      <DependentUpon>MusterilerFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusteriPanelGirisFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusteriPanelGirisFrm.Designer.cs">
+      <DependentUpon>MusteriPanelGirisFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusteriPaneliFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusteriPaneliFrm.Designer.cs">
+      <DependentUpon>MusteriPaneliFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="parabirimi.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParaYatirFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParaYatirFrm.Designer.cs">
+      <DependentUpon>ParaYatirFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temsilciler.cs">
+      <DependentUpon>BysModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemsilciPanelGirisFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemsilciPanelGirisFrm.Designer.cs">
+      <DependentUpon>TemsilciPanelGirisFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TemsilciPaneliFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemsilciPaneliFrm.Designer.cs">
+      <DependentUpon>TemsilciPaneliFrm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AnaGirisFrm.resx">
+      <DependentUpon>AnaGirisFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HavaleFrm.resx">
+      <DependentUpon>HavaleFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HesapAcFrm.resx">
+      <DependentUpon>HesapAcFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HesapHareketleriFrm.resx">
+      <DependentUpon>HesapHareketleriFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HesapOnaylariFrm.resx">
+      <DependentUpon>HesapOnaylariFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KrediBasvurusuFrm.resx">
+      <DependentUpon>KrediBasvurusuFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KrediOdeFrm.resx">
+      <DependentUpon>KrediOdeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KrediOnayFrm.resx">
+      <DependentUpon>KrediOnayFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MudurPaneliFrm.resx">
+      <DependentUpon>MudurPaneliFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusteriBilgiGuncellemeFrm.resx">
+      <DependentUpon>MusteriBilgiGuncellemeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusteriHesapHaraketleriFrm.resx">
+      <DependentUpon>MusteriHesapHaraketleriFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusterilerFrm.resx">
+      <DependentUpon>MusterilerFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusteriPanelGirisFrm.resx">
+      <DependentUpon>MusteriPanelGirisFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusteriPaneliFrm.resx">
+      <DependentUpon>MusteriPaneliFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParaYatirFrm.resx">
+      <DependentUpon>ParaYatirFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TemsilciPanelGirisFrm.resx">
+      <DependentUpon>TemsilciPanelGirisFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemsilciPaneliFrm.resx">
+      <DependentUpon>TemsilciPaneliFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="BysModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BysModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="BysModel.edmx.diagram">
+      <DependentUpon>BysModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BysModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BysModel.Context.cs</LastGenOutput>
+      <DependentUpon>BysModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="BysModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BysModel.edmx</DependentUpon>
+      <LastGenOutput>BysModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\bank-icon.jpg" />
+    <None Include="Resources\at2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

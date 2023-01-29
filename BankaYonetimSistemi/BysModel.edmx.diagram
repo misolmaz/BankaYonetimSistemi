@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="872c4c21e8ff4f118e831f91188e5799" Name="Diagram1">
+        <EntityTypeShape EntityType="BYSModel.ayarlar" Width="1.5" PointX="7.875" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.hesapharaketleri" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.hesaplar" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.islemturu" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.kasaharaketleri" Width="1.5" PointX="7.625" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.krediler" Width="1.5" PointX="5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.kullanicilar" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.kullanicituru" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.parabirimi" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.sysdiagrams" Width="1.5" PointX="0.625" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BYSModel.temsilciler" Width="1.5" PointX="2.75" PointY="8.25" IsExpanded="true" />
+        <AssociationConnector Association="BYSModel.FK_hesapharaketleri_hesaplar" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_hesapharaketleri_islemturu" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_hesaplar_dovizturu" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_hesaplar_kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_kasaharaketleri_hesaplar" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_krediler_hesaplar" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_kasaharaketleri_krediler" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_kullanicilar_kullanicituru" ManuallyRouted="false" />
+        <AssociationConnector Association="BYSModel.FK_temsilciler_kullanicilar" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

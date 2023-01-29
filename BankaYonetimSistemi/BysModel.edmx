@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ayarlar">
+          <Key>
+            <PropertyRef Name="sabitID" />
+          </Key>
+          <Property Name="sabitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="deger" Type="float" />
+        </EntityType>
+        <EntityType Name="hesapharaketleri">
+          <Key>
+            <PropertyRef Name="haraketID" />
+          </Key>
+          <Property Name="haraketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hesapId" Type="int" Nullable="false" />
+          <Property Name="hedefHesapID" Type="int" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="islemturu" Type="int" Nullable="false" />
+          <Property Name="tarih" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="aciklama" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="hesaplar">
+          <Key>
+            <PropertyRef Name="hesapID" />
+          </Key>
+          <Property Name="hesapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kID" Type="int" Nullable="false" />
+          <Property Name="dovizID" Type="int" Nullable="false" />
+          <Property Name="onayli" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="islemturu">
+          <Key>
+            <PropertyRef Name="turID" />
+          </Key>
+          <Property Name="turID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="islem" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="kasaharaketleri">
+          <Key>
+            <PropertyRef Name="hareketID" />
+          </Key>
+          <Property Name="hareketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="krediID" Type="int" Nullable="false" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="hesapID" Type="int" Nullable="false" />
+          <Property Name="islemturu" Type="int" Nullable="false" />
+          <Property Name="tarih" Type="nchar" MaxLength="15" />
+          <Property Name="aciklama" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="krediler">
+          <Key>
+            <PropertyRef Name="krediID" />
+          </Key>
+          <Property Name="krediID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hesapID" Type="int" Nullable="false" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="vade" Type="int" Nullable="false" />
+          <Property Name="tarih" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="onay" Type="int" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="kID" />
+          </Key>
+          <Property Name="kID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="soyad" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="tckn" Type="nchar" MaxLength="11" />
+          <Property Name="telno" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="eposta" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="adres" Type="nchar" MaxLength="70" Nullable="false" />
+          <Property Name="rolID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kullanicituru">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roladi" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parabirimi">
+          <Key>
+            <PropertyRef Name="dovizID" />
+          </Key>
+          <Property Name="dovizID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dovizadi" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="kur" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="temsilciler">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="temsilciID" Type="int" Nullable="false" />
+          <Property Name="kID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_hesapharaketleri_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="hesapharaketleri" Type="Self.hesapharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="hesapharaketleri">
+              <PropertyRef Name="hesapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesapharaketleri_islemturu">
+          <End Role="islemturu" Type="Self.islemturu" Multiplicity="1" />
+          <End Role="hesapharaketleri" Type="Self.hesapharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="islemturu">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="hesapharaketleri">
+              <PropertyRef Name="islemturu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesaplar_dovizturu">
+          <End Role="parabirimi" Type="Self.parabirimi" Multiplicity="1" />
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parabirimi">
+              <PropertyRef Name="dovizID" />
+            </Principal>
+            <Dependent Role="hesaplar">
+              <PropertyRef Name="dovizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesaplar_kullanicilar">
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="kID" />
+            </Principal>
+            <Dependent Role="hesaplar">
+              <PropertyRef Name="kID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kasaharaketleri_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="kasaharaketleri" Type="Self.kasaharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="kasaharaketleri">
+              <PropertyRef Name="hesapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kasaharaketleri_krediler">
+          <End Role="krediler" Type="Self.krediler" Multiplicity="1" />
+          <End Role="kasaharaketleri" Type="Self.kasaharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="krediler">
+              <PropertyRef Name="krediID" />
+            </Principal>
+            <Dependent Role="kasaharaketleri">
+              <PropertyRef Name="krediID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_krediler_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="krediler" Type="Self.krediler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="krediler">
+              <PropertyRef Name="hesapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanicilar_kullanicituru">
+          <End Role="kullanicituru" Type="Self.kullanicituru" Multiplicity="1" />
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicituru">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_temsilciler_kullanicilar">
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+          <End Role="temsilciler" Type="Self.temsilciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="kID" />
+            </Principal>
+            <Dependent Role="temsilciler">
+              <PropertyRef Name="kID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="BYSModelStoreContainer">
+          <EntitySet Name="ayarlar" EntityType="Self.ayarlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hesapharaketleri" EntityType="Self.hesapharaketleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hesaplar" EntityType="Self.hesaplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="islemturu" EntityType="Self.islemturu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kasaharaketleri" EntityType="Self.kasaharaketleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="krediler" EntityType="Self.krediler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanicituru" EntityType="Self.kullanicituru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parabirimi" EntityType="Self.parabirimi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="temsilciler" EntityType="Self.temsilciler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_hesapharaketleri_hesaplar" Association="Self.FK_hesapharaketleri_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="hesapharaketleri" EntitySet="hesapharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesapharaketleri_islemturu" Association="Self.FK_hesapharaketleri_islemturu">
+            <End Role="islemturu" EntitySet="islemturu" />
+            <End Role="hesapharaketleri" EntitySet="hesapharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesaplar_dovizturu" Association="Self.FK_hesaplar_dovizturu">
+            <End Role="parabirimi" EntitySet="parabirimi" />
+            <End Role="hesaplar" EntitySet="hesaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesaplar_kullanicilar" Association="Self.FK_hesaplar_kullanicilar">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="hesaplar" EntitySet="hesaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kasaharaketleri_hesaplar" Association="Self.FK_kasaharaketleri_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="kasaharaketleri" EntitySet="kasaharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kasaharaketleri_krediler" Association="Self.FK_kasaharaketleri_krediler">
+            <End Role="krediler" EntitySet="krediler" />
+            <End Role="kasaharaketleri" EntitySet="kasaharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_krediler_hesaplar" Association="Self.FK_krediler_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="krediler" EntitySet="krediler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanicilar_kullanicituru" Association="Self.FK_kullanicilar_kullanicituru">
+            <End Role="kullanicituru" EntitySet="kullanicituru" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_temsilciler_kullanicilar" Association="Self.FK_temsilciler_kullanicilar">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="temsilciler" EntitySet="temsilciler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ayarlar">
+          <Key>
+            <PropertyRef Name="sabitID" />
+          </Key>
+          <Property Name="sabitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="deger" Type="Double" />
+        </EntityType>
+        <EntityType Name="hesapharaketleri">
+          <Key>
+            <PropertyRef Name="haraketID" />
+          </Key>
+          <Property Name="haraketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hesapId" Type="Int32" Nullable="false" />
+          <Property Name="hedefHesapID" Type="Int32" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="islemturu" Type="Int32" Nullable="false" />
+          <Property Name="tarih" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="aciklama" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="hesaplar" Relationship="Self.FK_hesapharaketleri_hesaplar" FromRole="hesapharaketleri" ToRole="hesaplar" />
+          <NavigationProperty Name="islemturu1" Relationship="Self.FK_hesapharaketleri_islemturu" FromRole="hesapharaketleri" ToRole="islemturu" />
+        </EntityType>
+        <EntityType Name="hesaplar">
+          <Key>
+            <PropertyRef Name="hesapID" />
+          </Key>
+          <Property Name="hesapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kID" Type="Int32" Nullable="false" />
+          <Property Name="dovizID" Type="Int32" Nullable="false" />
+          <Property Name="onayli" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="hesapharaketleri" Relationship="Self.FK_hesapharaketleri_hesaplar" FromRole="hesaplar" ToRole="hesapharaketleri" />
+          <NavigationProperty Name="parabirimi" Relationship="Self.FK_hesaplar_dovizturu" FromRole="hesaplar" ToRole="parabirimi" />
+          <NavigationProperty Name="kullanicilar" Relationship="Self.FK_hesaplar_kullanicilar" FromRole="hesaplar" ToRole="kullanicilar" />
+          <NavigationProperty Name="kasaharaketleri" Relationship="Self.FK_kasaharaketleri_hesaplar" FromRole="hesaplar" ToRole="kasaharaketleri" />
+          <NavigationProperty Name="krediler" Relationship="Self.FK_krediler_hesaplar" FromRole="hesaplar" ToRole="krediler" />
+        </EntityType>
+        <EntityType Name="islemturu">
+          <Key>
+            <PropertyRef Name="turID" />
+          </Key>
+          <Property Name="turID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="islem" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="hesapharaketleri" Relationship="Self.FK_hesapharaketleri_islemturu" FromRole="islemturu" ToRole="hesapharaketleri" />
+        </EntityType>
+        <EntityType Name="kasaharaketleri">
+          <Key>
+            <PropertyRef Name="hareketID" />
+          </Key>
+          <Property Name="hareketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="krediID" Type="Int32" Nullable="false" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="hesapID" Type="Int32" Nullable="false" />
+          <Property Name="islemturu" Type="Int32" Nullable="false" />
+          <Property Name="tarih" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="hesaplar" Relationship="Self.FK_kasaharaketleri_hesaplar" FromRole="kasaharaketleri" ToRole="hesaplar" />
+          <NavigationProperty Name="krediler" Relationship="Self.FK_kasaharaketleri_krediler" FromRole="kasaharaketleri" ToRole="krediler" />
+        </EntityType>
+        <EntityType Name="krediler">
+          <Key>
+            <PropertyRef Name="krediID" />
+          </Key>
+          <Property Name="krediID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hesapID" Type="Int32" Nullable="false" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="vade" Type="Int32" Nullable="false" />
+          <Property Name="tarih" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="onay" Type="Int32" />
+          <NavigationProperty Name="hesaplar" Relationship="Self.FK_krediler_hesaplar" FromRole="krediler" ToRole="hesaplar" />
+          <NavigationProperty Name="kasaharaketleri" Relationship="Self.FK_kasaharaketleri_krediler" FromRole="krediler" ToRole="kasaharaketleri" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="kID" />
+          </Key>
+          <Property Name="kID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="soyad" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tckn" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="telno" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="eposta" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="70" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="rolID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="hesaplar" Relationship="Self.FK_hesaplar_kullanicilar" FromRole="kullanicilar" ToRole="hesaplar" />
+          <NavigationProperty Name="kullanicituru" Relationship="Self.FK_kullanicilar_kullanicituru" FromRole="kullanicilar" ToRole="kullanicituru" />
+          <NavigationProperty Name="temsilciler" Relationship="BYSModel.FK_temsilciler_kullanicilar" FromRole="kullanicilar" ToRole="temsilciler" />
+        </EntityType>
+        <EntityType Name="kullanicituru">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roladi" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="kullanicilar" Relationship="Self.FK_kullanicilar_kullanicituru" FromRole="kullanicituru" ToRole="kullanicilar" />
+        </EntityType>
+        <EntityType Name="parabirimi">
+          <Key>
+            <PropertyRef Name="dovizID" />
+          </Key>
+          <Property Name="dovizID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dovizadi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="kur" Type="Double" />
+          <NavigationProperty Name="hesaplar" Relationship="Self.FK_hesaplar_dovizturu" FromRole="parabirimi" ToRole="hesaplar" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="temsilciler">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="temsilciID" Type="Int32" Nullable="false" />
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kullanicilar" Relationship="BYSModel.FK_temsilciler_kullanicilar" FromRole="temsilciler" ToRole="kullanicilar" />
+        </EntityType>
+        <Association Name="FK_hesapharaketleri_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="hesapharaketleri" Type="Self.hesapharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="hesapharaketleri">
+              <PropertyRef Name="hesapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesapharaketleri_islemturu">
+          <End Role="islemturu" Type="Self.islemturu" Multiplicity="1" />
+          <End Role="hesapharaketleri" Type="Self.hesapharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="islemturu">
+              <PropertyRef Name="turID" />
+            </Principal>
+            <Dependent Role="hesapharaketleri">
+              <PropertyRef Name="islemturu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesaplar_dovizturu">
+          <End Role="parabirimi" Type="Self.parabirimi" Multiplicity="1" />
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parabirimi">
+              <PropertyRef Name="dovizID" />
+            </Principal>
+            <Dependent Role="hesaplar">
+              <PropertyRef Name="dovizID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hesaplar_kullanicilar">
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="1" />
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="kID" />
+            </Principal>
+            <Dependent Role="hesaplar">
+              <PropertyRef Name="kID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kasaharaketleri_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="kasaharaketleri" Type="Self.kasaharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="kasaharaketleri">
+              <PropertyRef Name="hesapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_krediler_hesaplar">
+          <End Role="hesaplar" Type="Self.hesaplar" Multiplicity="1" />
+          <End Role="krediler" Type="Self.krediler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hesaplar">
+              <PropertyRef Name="hesapID" />
+            </Principal>
+            <Dependent Role="krediler">
+              <PropertyRef Name="hesapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kasaharaketleri_krediler">
+          <End Role="krediler" Type="Self.krediler" Multiplicity="1" />
+          <End Role="kasaharaketleri" Type="Self.kasaharaketleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="krediler">
+              <PropertyRef Name="krediID" />
+            </Principal>
+            <Dependent Role="kasaharaketleri">
+              <PropertyRef Name="krediID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanicilar_kullanicituru">
+          <End Role="kullanicituru" Type="Self.kullanicituru" Multiplicity="1" />
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicituru">
+              <PropertyRef Name="rolID" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="rolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BYSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ayarlar" EntityType="Self.ayarlar" />
+          <EntitySet Name="hesapharaketleri" EntityType="Self.hesapharaketleri" />
+          <EntitySet Name="hesaplar" EntityType="Self.hesaplar" />
+          <EntitySet Name="islemturu" EntityType="Self.islemturu" />
+          <EntitySet Name="kasaharaketleri" EntityType="Self.kasaharaketleri" />
+          <EntitySet Name="krediler" EntityType="Self.krediler" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" />
+          <EntitySet Name="kullanicituru" EntityType="Self.kullanicituru" />
+          <EntitySet Name="parabirimi" EntityType="Self.parabirimi" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="temsilciler" EntityType="Self.temsilciler" />
+          <AssociationSet Name="FK_hesapharaketleri_hesaplar" Association="Self.FK_hesapharaketleri_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="hesapharaketleri" EntitySet="hesapharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesapharaketleri_islemturu" Association="Self.FK_hesapharaketleri_islemturu">
+            <End Role="islemturu" EntitySet="islemturu" />
+            <End Role="hesapharaketleri" EntitySet="hesapharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesaplar_dovizturu" Association="Self.FK_hesaplar_dovizturu">
+            <End Role="parabirimi" EntitySet="parabirimi" />
+            <End Role="hesaplar" EntitySet="hesaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hesaplar_kullanicilar" Association="Self.FK_hesaplar_kullanicilar">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="hesaplar" EntitySet="hesaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kasaharaketleri_hesaplar" Association="Self.FK_kasaharaketleri_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="kasaharaketleri" EntitySet="kasaharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_krediler_hesaplar" Association="Self.FK_krediler_hesaplar">
+            <End Role="hesaplar" EntitySet="hesaplar" />
+            <End Role="krediler" EntitySet="krediler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kasaharaketleri_krediler" Association="Self.FK_kasaharaketleri_krediler">
+            <End Role="krediler" EntitySet="krediler" />
+            <End Role="kasaharaketleri" EntitySet="kasaharaketleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kullanicilar_kullanicituru" Association="Self.FK_kullanicilar_kullanicituru">
+            <End Role="kullanicituru" EntitySet="kullanicituru" />
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BYSModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BYSModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_temsilciler_kullanicilar" Association="BYSModel.FK_temsilciler_kullanicilar">
+            <End Role="kullanicilar" EntitySet="kullanicilar" />
+            <End Role="temsilciler" EntitySet="temsilciler" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_temsilciler_kullanicilar">
+          <End Type="BYSModel.kullanicilar" Role="kullanicilar" Multiplicity="1" />
+          <End Type="BYSModel.temsilciler" Role="temsilciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kullanicilar">
+              <PropertyRef Name="kID" />
+            </Principal>
+            <Dependent Role="temsilciler">
+              <PropertyRef Name="kID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BYSModelStoreContainer" CdmEntityContainer="BYSEntities">
+          <EntitySetMapping Name="ayarlar">
+            <EntityTypeMapping TypeName="BYSModel.ayarlar">
+              <MappingFragment StoreEntitySet="ayarlar">
+                <ScalarProperty Name="sabitID" ColumnName="sabitID" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="deger" ColumnName="deger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hesapharaketleri">
+            <EntityTypeMapping TypeName="BYSModel.hesapharaketleri">
+              <MappingFragment StoreEntitySet="hesapharaketleri">
+                <ScalarProperty Name="haraketID" ColumnName="haraketID" />
+                <ScalarProperty Name="hesapId" ColumnName="hesapId" />
+                <ScalarProperty Name="hedefHesapID" ColumnName="hedefHesapID" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="islemturu" ColumnName="islemturu" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hesaplar">
+            <EntityTypeMapping TypeName="BYSModel.hesaplar">
+              <MappingFragment StoreEntitySet="hesaplar">
+                <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+                <ScalarProperty Name="kID" ColumnName="kID" />
+                <ScalarProperty Name="dovizID" ColumnName="dovizID" />
+                <ScalarProperty Name="onayli" ColumnName="onayli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="islemturu">
+            <EntityTypeMapping TypeName="BYSModel.islemturu">
+              <MappingFragment StoreEntitySet="islemturu">
+                <ScalarProperty Name="turID" ColumnName="turID" />
+                <ScalarProperty Name="islem" ColumnName="islem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kasaharaketleri">
+            <EntityTypeMapping TypeName="BYSModel.kasaharaketleri">
+              <MappingFragment StoreEntitySet="kasaharaketleri">
+                <ScalarProperty Name="hareketID" ColumnName="hareketID" />
+                <ScalarProperty Name="krediID" ColumnName="krediID" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+                <ScalarProperty Name="islemturu" ColumnName="islemturu" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="krediler">
+            <EntityTypeMapping TypeName="BYSModel.krediler">
+              <MappingFragment StoreEntitySet="krediler">
+                <ScalarProperty Name="krediID" ColumnName="krediID" />
+                <ScalarProperty Name="hesapID" ColumnName="hesapID" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="vade" ColumnName="vade" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="onay" ColumnName="onay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicilar">
+            <EntityTypeMapping TypeName="BYSModel.kullanicilar">
+              <MappingFragment StoreEntitySet="kullanicilar">
+                <ScalarProperty Name="kID" ColumnName="kID" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="tckn" ColumnName="tckn" />
+                <ScalarProperty Name="telno" ColumnName="telno" />
+                <ScalarProperty Name="eposta" ColumnName="eposta" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicituru">
+            <EntityTypeMapping TypeName="BYSModel.kullanicituru">
+              <MappingFragment StoreEntitySet="kullanicituru">
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+                <ScalarProperty Name="roladi" ColumnName="roladi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parabirimi">
+            <EntityTypeMapping TypeName="BYSModel.parabirimi">
+              <MappingFragment StoreEntitySet="parabirimi">
+                <ScalarProperty Name="dovizID" ColumnName="dovizID" />
+                <ScalarProperty Name="dovizadi" ColumnName="dovizadi" />
+                <ScalarProperty Name="kur" ColumnName="kur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BYSModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="temsilciler">
+            <EntityTypeMapping TypeName="BYSModel.temsilciler">
+              <MappingFragment StoreEntitySet="temsilciler">
+                <ScalarProperty Name="kID" ColumnName="kID" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+                <ScalarProperty Name="temsilciID" ColumnName="temsilciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BYSModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BYSModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BYSModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BYSModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BYSModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BYSModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BYSModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BYSModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BYSModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
